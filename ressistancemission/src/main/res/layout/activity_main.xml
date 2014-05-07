@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.milessteele.resistancemission.resistancemission.ressistancemission.MainActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pass"
+        android:id="@+id/pass"
+        android:layout_marginTop="142dp"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/reveal"
+        android:onClick="onClickPass" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fail"
+        android:id="@+id/fail"
+        android:layout_alignTop="@+id/pass"
+        android:layout_toRightOf="@+id/reveal"
+        android:onClick="onClickFail" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reveal"
+        android:id="@+id/reveal"
+        android:layout_marginTop="102dp"
+        android:layout_below="@+id/pass"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickReveal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/info"
+        android:layout_marginTop="52dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/pass"
+        android:layout_alignStart="@+id/pass"
+        android:layout_alignRight="@+id/fail"
+        android:layout_alignEnd="@+id/fail" />
+
+</RelativeLayout>
