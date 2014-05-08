@@ -12,15 +12,23 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
 
-    private int passes = 0;
-    private int fails = 0;
+    private int passes;
+    private int fails;
+    private int undo_passes;
+    private int undo_fails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        passes = 0;
+        fails = 0;
+        undo_passes = 0;
+        undo_fails = 0;
+        updateVotesTable(false);
+        findViewById(R.id.undo).setVisibility(View.GONE);
+        findViewById(R.id.reset).setVisibility(View.GONE);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -41,30 +49,60 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setInfo(String info) {
-        TextView text = (TextView) findViewById(R.id.info);
-        text.setText(info);
+    private void updateVotesTable(boolean showResults) {
+        ((TextView) findViewById(R.id.nVotes)).setText("" + (passes + fails));
+        if (showResults) {
+            ((TextView) findViewById(R.id.nPasses)).setText("" + passes);
+            ((TextView) findViewById(R.id.nFails)).setText("" + fails);
+        } else {
+            ((TextView) findViewById(R.id.nPasses)).setText("X");
+            ((TextView) findViewById(R.id.nFails)).setText("X");
+        }
     }
 
     public void onClickPass(View view) {
-        Log.d(TAG, "button.pass");
         passes++;
-        setInfo("");
+        undo_passes = 1;
+        undo_fails = 0;
+        updateVotesTable(false);
+        findViewById(R.id.show).setVisibility(View.VISIBLE);
+        findViewById(R.id.reset).setVisibility(View.GONE);
+        findViewById(R.id.undo).setVisibility(View.VISIBLE);
     }
 
     public void onClickFail(View view) {
-        Log.d(TAG, "button.fail");
         fails++;
-        setInfo("");
+        undo_passes = 0;
+        undo_fails = 1;
+        updateVotesTable(false);
+        findViewById(R.id.show).setVisibility(View.VISIBLE);
+        findViewById(R.id.reset).setVisibility(View.GONE);
+        findViewById(R.id.undo).setVisibility(View.VISIBLE);
     }
 
-    public void onClickReveal(View view) {
-        Log.d(TAG, "button.reveal");
-        Log.d(TAG, "passes: " + passes);
-        Log.d(TAG, "fails: " + fails);
-        setInfo("passes: " + passes + "  fails: " + fails);
+    public void onClickShow(View view) {
+        updateVotesTable(true);
+        findViewById(R.id.show).setVisibility(View.GONE);
+        findViewById(R.id.reset).setVisibility(View.VISIBLE);
+    }
+
+    public void onClickReset(View view) {
         passes = 0;
         fails = 0;
+        undo_passes = 0;
+        undo_fails = 0;
+        updateVotesTable(false);
+        findViewById(R.id.show).setVisibility(View.VISIBLE);
+        findViewById(R.id.reset).setVisibility(View.GONE);
+        findViewById(R.id.undo).setVisibility(View.GONE);
     }
 
+    public void onClickUndo(View view) {
+        passes += undo_passes;
+        fails += undo_fails;
+        updateVotesTable(false);
+        findViewById(R.id.show).setVisibility(View.VISIBLE);
+        findViewById(R.id.reset).setVisibility(View.GONE);
+        findViewById(R.id.undo).setVisibility(View.GONE);
+    }
 }
