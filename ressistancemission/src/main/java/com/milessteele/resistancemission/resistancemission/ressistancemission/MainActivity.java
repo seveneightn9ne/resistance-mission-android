@@ -12,22 +12,19 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
 
-    private int passes;
-    private int fails;
-    private int undo_passes;
-    private int undo_fails;
+    private MissionState mission;
+    private boolean revealed;
+    private boolean undoable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        passes = 0;
-        fails = 0;
-        undo_passes = 0;
-        undo_fails = 0;
-        updateVotesTable(false);
-        findViewById(R.id.undo).setVisibility(View.GONE);
-        findViewById(R.id.reset).setVisibility(View.GONE);
+
+        mission = new MissionState();
+        revealed = false;
+        undoable = false;
+        updateDisplay();
     }
 
     @Override
@@ -49,60 +46,51 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void updateVotesTable(boolean showResults) {
-        ((TextView) findViewById(R.id.nVotes)).setText("" + (passes + fails));
-        if (showResults) {
-            ((TextView) findViewById(R.id.nPasses)).setText("" + passes);
-            ((TextView) findViewById(R.id.nFails)).setText("" + fails);
+    public void updateDisplay() {
+        ((TextView) findViewById(R.id.nVotes)).setText("" + (mission.getPasses() + mission.getFails()));
+
+        if (revealed) {
+            ((TextView) findViewById(R.id.nPasses)).setText("" + mission.getPasses());
+            ((TextView) findViewById(R.id.nFails)).setText("" + mission.getFails());
+            findViewById(R.id.show).setVisibility(View.GONE);
+            findViewById(R.id.reset).setVisibility(View.VISIBLE);
         } else {
             ((TextView) findViewById(R.id.nPasses)).setText("X");
             ((TextView) findViewById(R.id.nFails)).setText("X");
+            findViewById(R.id.show).setVisibility(View.VISIBLE);
+            findViewById(R.id.reset).setVisibility(View.GONE);
         }
+
+        if (undoable)
+            findViewById(R.id.undo).setVisibility(View.VISIBLE);
+        else
+            findViewById(R.id.undo).setVisibility(View.GONE);
     }
 
     public void onClickPass(View view) {
-        passes++;
-        undo_passes = 1;
-        undo_fails = 0;
-        updateVotesTable(false);
-        findViewById(R.id.show).setVisibility(View.VISIBLE);
-        findViewById(R.id.reset).setVisibility(View.GONE);
-        findViewById(R.id.undo).setVisibility(View.VISIBLE);
+        mission = mission.addPass();
+        revealed = false;
+        updateDisplay();
     }
 
     public void onClickFail(View view) {
-        fails++;
-        undo_passes = 0;
-        undo_fails = 1;
-        updateVotesTable(false);
-        findViewById(R.id.show).setVisibility(View.VISIBLE);
-        findViewById(R.id.reset).setVisibility(View.GONE);
-        findViewById(R.id.undo).setVisibility(View.VISIBLE);
+        mission = mission.addFail();
+        revealed = false;
+        updateDisplay();
     }
 
     public void onClickShow(View view) {
-        updateVotesTable(true);
-        findViewById(R.id.show).setVisibility(View.GONE);
-        findViewById(R.id.reset).setVisibility(View.VISIBLE);
+        revealed = true;
+        updateDisplay();
     }
 
     public void onClickReset(View view) {
-        passes = 0;
-        fails = 0;
-        undo_passes = 0;
-        undo_fails = 0;
-        updateVotesTable(false);
-        findViewById(R.id.show).setVisibility(View.VISIBLE);
-        findViewById(R.id.reset).setVisibility(View.GONE);
-        findViewById(R.id.undo).setVisibility(View.GONE);
+        mission = new MissionState();
+        revealed = false;
+        updateDisplay();
     }
 
     public void onClickUndo(View view) {
-        passes += undo_passes;
-        fails += undo_fails;
-        updateVotesTable(false);
-        findViewById(R.id.show).setVisibility(View.VISIBLE);
-        findViewById(R.id.reset).setVisibility(View.GONE);
-        findViewById(R.id.undo).setVisibility(View.GONE);
+        updateDisplay();
     }
 }
