@@ -1,34 +1,48 @@
 package com.milessteele.resistancemission.resistancemission.ressistancemission;
+import java.util.ArrayList;
 
-/**
- * Immutable state of a mission.
- */
 public class MissionState {
-    private int passes;
-    private int fails;
+    private ArrayList<Integer> votes;
 
     public MissionState() {
-        this(0, 0);
+        this.votes = new ArrayList<Integer>();
     }
 
-    private MissionState(int passes, int fails) {
-        this.passes = passes;
-        this.fails = fails;
+    public void addPass() {
+        this.votes.add(1);
     }
 
-    public MissionState addPass() {
-        return new MissionState(getPasses() + 1, getFails());
-    }
-
-    public MissionState addFail() {
-        return new MissionState(getPasses(), getFails() + 1);
+    public void addFail() {
+        this.votes.add(0);
     }
 
     public int getPasses() {
+        int passes = 0;
+        for (Integer i : this.votes) {
+            if (i.equals(1)) {
+                passes += 1;
+            }
+        }
         return passes;
     }
 
     public int getFails() {
+        int fails = 0;
+        for (Integer i : this.votes) {
+            if (i.equals(0)) {
+                fails += 1;
+            }
+        }
         return fails;
+    }
+
+    public void reset() {
+        this.votes = new ArrayList<Integer>();
+    }
+
+    public void undo() {
+        if (this.votes.size() > 0) {
+            this.votes.remove(this.votes.size() - 1);
+        }
     }
 }

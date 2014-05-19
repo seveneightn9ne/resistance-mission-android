@@ -2,12 +2,12 @@ package com.milessteele.resistancemission.resistancemission.ressistancemission;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
+import android.content.Intent;
+import java.util.ArrayList;
 
 public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
@@ -15,15 +15,42 @@ public class MainActivity extends Activity {
     private MissionState mission;
     private boolean revealed;
     private boolean undoable;
+    private ArrayList<String> players;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent i = getIntent();
+        players = i.getStringArrayListExtra("players");
+        if (players == null) {
+            players = new ArrayList<String>();
+        }
+
+        String [][] missionNums = {{"0", "0", "0", "0", "0"},
+                                   {"0", "0", "0", "0", "0"},
+                                   {"0", "0", "0", "0", "0"},
+                                   {"0", "0", "0", "0", "0"},
+                                   {"0", "0", "0", "0", "0"},
+                                   {"2", "3", "2", "3", "3"},
+                                   {"2", "3", "4", "3", "4"},
+                                   {"2", "3", "3", "4*", "4"},
+                                   {"3", "4", "4", "5*", "5"},
+                                   {"3", "4", "4", "5*", "5"},
+                                   {"3", "4", "4", "5*", "5"}};
+
+        ((TextView) findViewById(R.id.title)).setText("   Resistance Mission \n          " +
+                                                       missionNums[players.size()][0] + "  " +
+                                                       missionNums[players.size()][1] + "  " +
+                                                       missionNums[players.size()][2] + "  " +
+                                                       missionNums[players.size()][3] + "  " +
+                                                       missionNums[players.size()][4]);
+
+
         mission = new MissionState();
         revealed = false;
-        undoable = false;
+        undoable = true;
         updateDisplay();
     }
 
@@ -68,15 +95,19 @@ public class MainActivity extends Activity {
     }
 
     public void onClickPass(View view) {
-        mission = mission.addPass();
-        revealed = false;
-        updateDisplay();
+        if (!revealed) {
+            mission.addPass();
+            revealed = false;
+            updateDisplay();
+        }
     }
 
     public void onClickFail(View view) {
-        mission = mission.addFail();
-        revealed = false;
-        updateDisplay();
+        if (!revealed) {
+            mission.addFail();
+            revealed = false;
+            updateDisplay();
+        }
     }
 
     public void onClickShow(View view) {
@@ -85,12 +116,21 @@ public class MainActivity extends Activity {
     }
 
     public void onClickReset(View view) {
-        mission = new MissionState();
+        mission.reset();
         revealed = false;
         updateDisplay();
     }
 
     public void onClickUndo(View view) {
-        updateDisplay();
+        if (!revealed) {
+            mission.undo();
+            updateDisplay();
+        }
+    }
+
+    public void onClickSetup(View view) {
+        Intent i = new Intent(getApplicationContext(), SetupActivity.class);
+        i.putExtra("players", players);
+        startActivity(i);
     }
 }

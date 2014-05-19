@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:rowCount="34"
+        android:columnCount="23">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Spys:"
+            android:id="@+id/spys"
+            android:layout_row="9"
+            android:layout_column="2"
+            android:singleLine="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Seating Order"
+            android:id="@+id/seatingOrder"
+            android:layout_row="0"
+            android:layout_column="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Player 1"
+            android:id="@+id/player1"
+            android:layout_row="2"
+            android:layout_column="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Player 2"
+            android:id="@+id/player2"
+            android:layout_row="3"
+            android:layout_column="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Player 3"
+            android:id="@+id/player3"
+            android:layout_row="6"
+            android:layout_column="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Player 4"
+            android:id="@+id/player4"
+            android:layout_row="7"
+            android:layout_column="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Player 5"
+            android:id="@+id/player5"
+            android:layout_row="9"
+            android:layout_column="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Player 6"
+            android:id="@+id/player6"
+            android:layout_row="10"
+            android:layout_column="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Player 7"
+            android:id="@+id/player7"
+            android:layout_row="11"
+            android:layout_column="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Player 8"
+            android:id="@+id/player8"
+            android:layout_row="12"
+            android:layout_column="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Player 9"
+            android:id="@+id/player9"
+            android:layout_row="13"
+            android:layout_column="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Player 10"
+            android:id="@+id/player10"
+            android:layout_row="14"
+            android:layout_column="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Spy 1"
+            android:id="@+id/spy1"
+            android:layout_row="10"
+            android:layout_column="2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Spy 2"
+            android:id="@+id/spy2"
+            android:layout_row="11"
+            android:layout_column="2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Spy 3"
+            android:id="@+id/spy3"
+            android:layout_row="12"
+            android:layout_column="2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Spy 4"
+            android:id="@+id/spy4"
+            android:layout_row="13"
+            android:layout_column="2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Pass to"
+            android:id="@+id/pass"
+            android:layout_row="3"
+            android:layout_column="2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Merlin"
+            android:id="@+id/merlinText"
+            android:layout_row="0"
+            android:layout_column="3"
+            android:enabled="true"
+            android:layout_gravity="right"
+            android:clickable="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="You are"
+            android:id="@+id/youAre"
+            android:layout_row="7"
+            android:layout_column="2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="a spy"
+            android:id="@+id/role"
+            android:layout_row="7"
+            android:layout_column="3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Brandon"
+            android:id="@+id/passTo"
+            android:layout_row="3"
+            android:layout_column="3" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Miles"
+            android:id="@+id/button1"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:clickable="true"
+            android:onClick="onClickPlayer" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Jess"
+            android:id="@+id/button2"
+            android:layout_row="3"
+            android:layout_column="0"
+            android:clickable="true"
+            android:onClick="onClickPlayer" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Ciara"
+            android:id="@+id/button3"
+            android:focusableInTouchMode="false"
+            android:layout_row="6"
+            android:layout_column="0"
+            android:clickable="true"
+            android:onClick="onClickPlayer" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Brandon"
+            android:id="@+id/button4"
+            android:layout_row="7"
+            android:layout_column="0"
+            android:clickable="true"
+            android:onClick="onClickPlayer" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Andres"
+            android:id="@+id/button5"
+            android:layout_row="9"
+            android:layout_column="0"
+            android:clickable="true"
+            android:onClick="onClickPlayer" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Phoebe"
+            android:id="@+id/button6"
+            android:layout_row="10"
+            android:layout_column="0"
+            android:clickable="true"
+            android:onClick="onClickPlayer" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Chris"
+            android:id="@+id/button7"
+            android:layout_row="11"
+            android:layout_column="0"
+            android:clickable="true"
+            android:onClick="onClickPlayer" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Extra 1"
+            android:id="@+id/button8"
+            android:layout_row="12"
+            android:layout_column="0"
+            android:clickable="true"
+            android:onClick="onClickPlayer" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Extra 2"
+            android:id="@+id/button9"
+            android:layout_row="13"
+            android:layout_column="0"
+            android:clickable="true"
+            android:onClick="onClickPlayer" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Extra 3"
+            android:id="@+id/button10"
+            android:layout_row="14"
+            android:layout_column="0"
+            android:clickable="true"
+            android:onClick="onClickPlayer" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:id="@+id/resetSeating"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:clickable="true"
+            android:onClick="onClickPlayerReset" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:id="@+id/next"
+            android:layout_row="6"
+            android:layout_column="2"
+            android:clickable="true"
+            android:onClick="onClickNext" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:id="@+id/reset"
+            android:layout_row="6"
+            android:layout_column="3"
+            android:clickable="true"
+            android:onClick="onClickReset" />
+
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Merlin"
+            android:id="@+id/merlin"
+            android:layout_column="3"
+            android:layout_row="2"
+            android:layout_gravity="right"
+            android:enabled="true"
+            android:clickable="true"
+            android:onClick="onClickMerlin" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go play!"
+            android:id="@+id/play"
+            android:layout_row="14"
+            android:layout_column="3"
+            android:longClickable="false"
+            android:clickable="true"
+            android:onClick="onClickGoPlay" />
+
+    </GridLayout>
+
+</LinearLayout>
