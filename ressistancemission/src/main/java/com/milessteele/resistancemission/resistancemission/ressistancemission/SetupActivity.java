@@ -37,7 +37,8 @@ public class SetupActivity extends Activity {
         Integer[] spyObjects = {R.id.spy1, R.id.spy2, R.id.spy3, R.id.spy4};
         spyIDs = Arrays.asList(spyObjects);
         game = new GameState();
-        ((ToggleButton) findViewById(R.id.merlin)).setChecked(true);
+        // turn on Merlin by default
+       //  ((ToggleButton) findViewById(R.id.merlin)).setChecked(true);
         updateDisplay();
     }
 
@@ -65,7 +66,7 @@ public class SetupActivity extends Activity {
         ((TextView) findViewById(R.id.role)).setText("");
         ((TextView) findViewById(R.id.pass)).setText("");
         ((TextView) findViewById(R.id.passTo)).setText("");
-        ((TextView) findViewById(R.id.spys)).setText("");
+        ((TextView) findViewById(R.id.spies)).setText("");
         ((TextView) findViewById(R.id.next)).setText("Start");
         findViewById(R.id.reset).setVisibility(View.INVISIBLE);
 
@@ -85,7 +86,7 @@ public class SetupActivity extends Activity {
         ((TextView) findViewById(R.id.role)).setText(values.get(1));
         ((TextView) findViewById(R.id.pass)).setText(values.get(2));
         ((TextView) findViewById(R.id.passTo)).setText(values.get(3));
-        ((TextView) findViewById(R.id.spys)).setText(values.get(4));
+        ((TextView) findViewById(R.id.spies)).setText(values.get(4));
 
         for (Integer s : spyIDs) {
             ((TextView) findViewById(s)).setText("");
@@ -135,6 +136,23 @@ public class SetupActivity extends Activity {
     public void onClickMerlin(View view) {
         game.toggleMerlin();
     }
+
+    public void onClickPercival(View view) {
+        game.togglePercival();
+    }
+
+    public void onClickMordred(View view) {
+        game.toggleMordred();
+    }
+
+    public void onClickOberon(View view) {
+        game.toggleOberon();
+    }
+
+    public void onClickMorgana(View view) {
+        game.toggleMorgana();
+    }
+
 
     public void onClickGoPlay(View view) {
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
