@@ -1,5 +1,6 @@
 package com.milessteele.resistancemission.resistancemission.ressistancemission;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GameState {
@@ -225,5 +226,4 @@ public class GameState {
     public void toggleMorgana() {
         this.useMorgana = !this.useMorgana;
     }
-
 }

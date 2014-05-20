@@ -16,6 +16,7 @@ public class MainActivity extends Activity {
     private boolean revealed;
     private boolean undoable;
     private ArrayList<String> players;
+    private boolean[] buttons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,9 @@ public class MainActivity extends Activity {
         if (players == null) {
             players = new ArrayList<String>();
         }
+
+        buttons = i.getBooleanArrayExtra("buttons");
+
 
         String [][] missionNums = {{"0", "0", "0", "0", "0"},
                                    {"0", "0", "0", "0", "0"},
@@ -131,6 +135,7 @@ public class MainActivity extends Activity {
     public void onClickSetup(View view) {
         Intent i = new Intent(getApplicationContext(), SetupActivity.class);
         i.putExtra("players", players);
+        i.putExtra("buttons", buttons);
         startActivity(i);
     }
 }

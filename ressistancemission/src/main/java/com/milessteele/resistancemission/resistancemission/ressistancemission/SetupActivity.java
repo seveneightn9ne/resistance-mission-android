@@ -20,6 +20,8 @@ public class SetupActivity extends Activity {
     private List<Integer> playerIDs;
     private List<Integer> spyIDs;
     private GameState game;
+    private boolean revealing;
+    private boolean[] buttons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +34,46 @@ public class SetupActivity extends Activity {
             players = new ArrayList<String>();
         }
 
+        game = new GameState();
+
+        buttons = i.getBooleanArrayExtra("buttons");
+        if (buttons != null) {
+            if (buttons[0]) {
+                ((ToggleButton) findViewById(R.id.merlin)).setChecked(true);
+                game.toggleMerlin();
+            }
+
+            if (buttons[1]) {
+                ((ToggleButton) findViewById(R.id.percival)).setChecked(true);
+                game.togglePercival();
+            }
+
+            if (buttons[2]) {
+                ((ToggleButton) findViewById(R.id.mordred)).setChecked(true);
+                game.toggleMordred();
+            }
+
+            if (buttons[3]) {
+                ((ToggleButton) findViewById(R.id.oberon)).setChecked(true);
+                game.toggleOberon();
+            }
+
+            if (buttons[4]) {
+                ((ToggleButton) findViewById(R.id.morgana)).setChecked(true);
+                game.toggleMorgana();
+            }
+        } else {
+            buttons = new boolean[5];
+            for (int j = 0; j < 5; j++) {
+                buttons[j] = false;
+            }
+        }
+
         Integer[] playerObjects = {R.id.player1, R.id.player2, R.id.player3, R.id.player4, R.id.player5, R.id.player6, R.id.player7, R.id.player8, R.id.player9, R.id.player10};
         playerIDs = Arrays.asList(playerObjects);
         Integer[] spyObjects = {R.id.spy1, R.id.spy2, R.id.spy3, R.id.spy4};
         spyIDs = Arrays.asList(spyObjects);
-        game = new GameState();
-        // turn on Merlin by default
-       //  ((ToggleButton) findViewById(R.id.merlin)).setChecked(true);
+
         updateDisplay();
     }
 
@@ -62,6 +97,7 @@ public class SetupActivity extends Activity {
     }
 
     public void updateDisplay() {
+        revealing = false;
         ((TextView) findViewById(R.id.youAre)).setText("");
         ((TextView) findViewById(R.id.role)).setText("");
         ((TextView) findViewById(R.id.pass)).setText("");
@@ -82,6 +118,7 @@ public class SetupActivity extends Activity {
     }
 
     public void updateDisplay(ArrayList<String> values) {
+        revealing = true;
         ((TextView) findViewById(R.id.youAre)).setText(values.get(0));
         ((TextView) findViewById(R.id.role)).setText(values.get(1));
         ((TextView) findViewById(R.id.pass)).setText(values.get(2));
@@ -134,29 +171,54 @@ public class SetupActivity extends Activity {
     }
 
     public void onClickMerlin(View view) {
-        game.toggleMerlin();
+        if (!revealing) {
+            game.toggleMerlin();
+            buttons[0] = !buttons[0];
+        } else {
+            ((ToggleButton) findViewById(R.id.merlin)).setChecked(buttons[0]);
+        }
     }
 
     public void onClickPercival(View view) {
-        game.togglePercival();
+        if (!revealing) {
+            game.togglePercival();
+            buttons[1] = !buttons[1];
+        } else {
+            ((ToggleButton) findViewById(R.id.percival)).setChecked(buttons[1]);
+        }
     }
 
     public void onClickMordred(View view) {
-        game.toggleMordred();
+        if (!revealing) {
+            game.toggleMordred();
+            buttons[2] = !buttons[2];
+        } else {
+            ((ToggleButton) findViewById(R.id.mordred)).setChecked(buttons[2]);
+        }
     }
 
     public void onClickOberon(View view) {
-        game.toggleOberon();
+        if (!revealing) {
+            game.toggleOberon();
+            buttons[3] = !buttons[3];
+        } else {
+            ((ToggleButton) findViewById(R.id.oberon)).setChecked(buttons[3]);
+        }
     }
 
     public void onClickMorgana(View view) {
-        game.toggleMorgana();
+        if (!revealing) {
+            game.toggleMorgana();
+            buttons[4] = !buttons[4];
+        } else {
+            ((ToggleButton) findViewById(R.id.morgana)).setChecked(buttons[4]);
+        }
     }
-
 
     public void onClickGoPlay(View view) {
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
         i.putExtra("players", players);
+        i.putExtra("buttons", buttons);
         startActivity(i);
     }
 }
