@@ -1,17 +1,24 @@
 package com.milessteele.resistancemission.resistancemission.ressistancemission;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.MotionEvent;
+import android.view.WindowManager;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import android.widget.Button;
 import android.widget.ToggleButton;
+import android.widget.EditText;
 
 public class SetupActivity extends Activity {
     private static final String TAG = "SetupActivity";
@@ -155,6 +162,47 @@ public class SetupActivity extends Activity {
         updateDisplay();
     }
 
+    public void onClickExtra(View view) {
+        // 1. Instantiate an AlertDialog.Builder with its constructor
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+// 2. Chain together various setter methods to set the dialog characteristics
+        builder.setMessage("Message")
+                .setTitle("Title");
+
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+        input.requestFocus();
+        // Not working...
+//        input.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (!hasFocus) hideKeyboard();
+//                else showKeyboard();
+//            }
+//        });
+        builder.setView(input);
+
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                players.add(input.getText().toString());
+                updateDisplay();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+// 3. Get the AlertDialog from create()
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
+
+    }
+
     public void onClickNext(View view) {
         if (((TextView) findViewById(R.id.next)).getText().toString().equals("Start")) {
             ((TextView) findViewById(R.id.next)).setText("Next");
@@ -221,5 +269,14 @@ public class SetupActivity extends Activity {
         i.putExtra("buttons", buttons);
         startActivity(i);
     }
+
+    // Not working...
+//    private void showKeyboard() {
+//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+//    }
+//
+//    private void hideKeyboard() {
+//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+//    }
 }
 
